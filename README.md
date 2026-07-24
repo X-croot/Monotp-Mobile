@@ -1,6 +1,6 @@
 # monotp — .NET MAUI Edition
 
-**Minimal, fully-encrypted, cross-platform TOTP authenticator, rebuilt on .NET MAUI.**
+**Minimal, fully-encrypted, cross-platform TOTP authenticator, rebuilt on .NET MAUI. No camera support by design — secrets are entered manually to keep the permission footprint minimal.**
 
 ![framework](https://img.shields.io/badge/framework-.NET%20MAUI-000000?style=flat-square)
 ![platform](https://img.shields.io/badge/platform-Windows%20%7C%20Android%20%7C%20iOS%20%7C%20macOS-000000?style=flat-square)
