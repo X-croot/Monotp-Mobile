@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Monotp.Views.EntryEditPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="18" Spacing="8" MaximumWidthRequest="420" HorizontalOptions="Center">
+
+            <VerticalStackLayout x:Name="SmartSection" Spacing="4">
+                <Label Text="Smart paste" FontAttributes="Bold" />
+                <Label Text="Paste an otpauth:// link or a raw base32 secret — the rest is filled automatically." Style="{StaticResource WeakLabel}" />
+                <Editor x:Name="SmartEntry" HeightRequest="70" Placeholder="otpauth://totp/GitHub:me@example.com?secret=..."
+                        TextColor="{DynamicResource TextColorPrimary}" BackgroundColor="{DynamicResource PanelColor}"
+                        TextChanged="OnSmartChanged" />
+                <BoxView HeightRequest="1" Color="{DynamicResource TextColorWeak}" Opacity="0.25" Margin="0,4" />
+            </VerticalStackLayout>
+
+            <Label Text="Issuer" Style="{StaticResource WeakLabel}" />
+            <Entry x:Name="IssuerEntry" Placeholder="e.g. GitHub" />
+            <Label Text="Account" Style="{StaticResource WeakLabel}" />
+            <Entry x:Name="AccountEntry" Placeholder="e.g. me@example.com" />
+            <Label Text="Secret" Style="{StaticResource WeakLabel}" />
+            <Entry x:Name="SecretEntry" Placeholder="base32" TextChanged="OnSecretChanged" />
+
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="Digits" Style="{StaticResource WeakLabel}" />
+                    <Picker x:Name="DigitsPicker" TextColor="{DynamicResource TextColorPrimary}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="Period (s)" Style="{StaticResource WeakLabel}" />
+                    <Entry x:Name="PeriodEntry" Keyboard="Numeric" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="2">
+                    <Label Text="Algorithm" Style="{StaticResource WeakLabel}" />
+                    <Picker x:Name="AlgoPicker" TextColor="{DynamicResource TextColorPrimary}" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <Label x:Name="PreviewLabel" FontFamily="Monospace" FontAttributes="Bold" />
+            <Label x:Name="StatusLabel" TextColor="{DynamicResource DangerColor}" IsVisible="False" />
+
+            <BoxView HeightRequest="6" Color="Transparent" />
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                <Button Grid.Column="0" x:Name="SaveBtn" Text="Save" Style="{StaticResource PrimaryButton}" Clicked="OnSave" />
+                <Button Grid.Column="1" Text="Cancel" Style="{StaticResource GhostButton}" Clicked="OnCancel" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

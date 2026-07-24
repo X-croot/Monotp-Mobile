@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Monotp.Views.SetupPage"
+             Title="monotp"
+             NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+        <VerticalStackLayout Padding="24,50" Spacing="10" MaximumWidthRequest="360" HorizontalOptions="Center">
+            <Image Source="appicon.png" HeightRequest="72" WidthRequest="72" HorizontalOptions="Center" />
+            <Label Text="Create your master password" Style="{StaticResource HeadingLabel}" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+            <Label Text="Protected with Argon2id. It is never stored and cannot be recovered." Style="{StaticResource WeakLabel}" HorizontalTextAlignment="Center" />
+            <BoxView HeightRequest="12" Color="Transparent" />
+            <Label Text="Master password" Style="{StaticResource WeakLabel}" />
+            <Entry x:Name="PwEntry" IsPassword="True" />
+            <Label Text="Confirm password" Style="{StaticResource WeakLabel}" />
+            <Entry x:Name="PwConfirm" IsPassword="True" />
+            <BoxView HeightRequest="6" Color="Transparent" />
+            <Button x:Name="CreateBtn" Text="Create vault" Style="{StaticResource PrimaryButton}" Clicked="OnCreate" />
+            <Label x:Name="StatusLabel" TextColor="{DynamicResource DangerColor}" IsVisible="False" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

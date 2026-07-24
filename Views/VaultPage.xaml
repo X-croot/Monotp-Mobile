@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Monotp.Views"
+             x:Class="Monotp.Views.VaultPage"
+             x:DataType="local:VaultPage"
+             Title="monotp"
+             NavigationPage.HasNavigationBar="False">
+    <Grid RowDefinitions="Auto,Auto,Auto,*" Padding="14,12">
+
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+            <Image Grid.Column="0" Source="appicon.png" HeightRequest="34" WidthRequest="34" VerticalOptions="Center" />
+            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                <Label Text="monotp" FontSize="22" FontAttributes="Bold" />
+                <Label x:Name="CountLabel" Style="{StaticResource WeakLabel}" />
+            </VerticalStackLayout>
+            <Picker Grid.Column="2" x:Name="ThemePicker" WidthRequest="130" VerticalOptions="Center"
+                    TextColor="{DynamicResource TextColorPrimary}" SelectedIndexChanged="OnThemeChanged" />
+        </Grid>
+
+        <BoxView Grid.Row="1" HeightRequest="1" Color="{DynamicResource TextColorWeak}" Opacity="0.25" Margin="0,8" />
+
+        <Grid Grid.Row="2" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8" Margin="0,0,0,8">
+            <Button Grid.Column="0" Text="+ Add account" Style="{StaticResource PrimaryButton}" HeightRequest="40" Clicked="OnAdd" />
+            <Entry Grid.Column="1" x:Name="SearchEntry" Placeholder="Search…" TextChanged="OnSearch" />
+            <Button Grid.Column="2" Text="Menu" Style="{StaticResource GhostButton}" Clicked="OnMenu" />
+        </Grid>
+
+        <CollectionView Grid.Row="3" x:Name="EntriesView" ItemsSource="{Binding Items}">
+            <CollectionView.EmptyView>
+                <VerticalStackLayout Padding="0,50" HorizontalOptions="Center">
+                    <Label Text="No accounts yet" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    <Label Text="Tap &quot;+ Add account&quot; and paste an otpauth:// link or type a secret manually." Style="{StaticResource WeakLabel}" HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="local:EntryVm">
+                    <Border Style="{StaticResource Card}" Margin="0,4">
+                        <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="6">
+                            <Grid Grid.Row="0" ColumnDefinitions="*,Auto">
+                                <VerticalStackLayout Grid.Column="0">
+                                    <Label Text="{Binding Head}" FontSize="15" FontAttributes="Bold" />
+                                    <Label Text="{Binding SubHead}" Style="{StaticResource WeakLabel}" IsVisible="{Binding HasSubHead}" />
+                                    <Label Text="{Binding DisplayCode}" Style="{StaticResource CodeLabel}" />
+                                    <Label Text="{Binding Secret}" FontFamily="Monospace" FontSize="11" TextColor="{DynamicResource TextColorWeak}" IsVisible="{Binding Revealed}" />
+                                    <Label Text="Invalid secret" TextColor="{DynamicResource DangerColor}" IsVisible="{Binding Invalid}" />
+                                </VerticalStackLayout>
+                                <GraphicsView Grid.Column="1" x:Name="Ring" WidthRequest="34" HeightRequest="34" VerticalOptions="Start" Drawable="{Binding Ring}" />
+                            </Grid>
+                            <ProgressBar Grid.Row="1" Progress="{Binding Fraction}" ProgressColor="{Binding BarColor}" />
+                            <HorizontalStackLayout Grid.Row="2" Spacing="6">
+                                <Button Text="{Binding CopyLabel}" Style="{StaticResource GhostButton}" Clicked="OnCopy" CommandParameter="{Binding .}" />
+                                <Button Text="{Binding RevealLabel}" Style="{StaticResource GhostButton}" Clicked="OnReveal" CommandParameter="{Binding .}" />
+                                <Button Text="Edit" Style="{StaticResource GhostButton}" Clicked="OnEdit" CommandParameter="{Binding .}" />
+                                <Button Text="Delete" Style="{StaticResource GhostButton}" Clicked="OnDelete" CommandParameter="{Binding .}" />
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

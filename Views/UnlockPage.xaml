@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Monotp.Views.UnlockPage"
+             Title="monotp"
+             NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+        <VerticalStackLayout Padding="24,60" Spacing="10" MaximumWidthRequest="360" HorizontalOptions="Center">
+            <Image Source="appicon.png" HeightRequest="72" WidthRequest="72" HorizontalOptions="Center" />
+            <Label Text="Unlock vault" Style="{StaticResource HeadingLabel}" HorizontalOptions="Center" />
+            <BoxView HeightRequest="10" Color="Transparent" />
+            <Label Text="Master password" Style="{StaticResource WeakLabel}" />
+            <Entry x:Name="PwEntry" IsPassword="True" ReturnType="Go" Completed="OnUnlock" />
+            <BoxView HeightRequest="6" Color="Transparent" />
+            <Button x:Name="UnlockBtn" Text="Unlock" Style="{StaticResource PrimaryButton}" Clicked="OnUnlock" />
+            <Button Text="Forgot password?" Style="{StaticResource GhostButton}" Clicked="OnForgot" />
+            <Label x:Name="StatusLabel" TextColor="{DynamicResource DangerColor}" IsVisible="False" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

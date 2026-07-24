@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Monotp.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="BgColor">#0F0F11</Color>
+            <Color x:Key="PanelColor">#1C1C21</Color>
+            <Color x:Key="TextColorPrimary">#EBEBEE</Color>
+            <Color x:Key="TextColorWeak">#96969E</Color>
+            <Color x:Key="AccentColor">#78788C</Color>
+            <Color x:Key="OnAccentColor">#FFFFFF</Color>
+            <Color x:Key="DangerColor">#D25A5A</Color>
+
+            <Style TargetType="Page">
+                <Setter Property="BackgroundColor" Value="{DynamicResource BgColor}" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource TextColorPrimary}" />
+            </Style>
+
+            <Style x:Key="WeakLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource TextColorWeak}" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+
+            <Style x:Key="HeadingLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource TextColorPrimary}" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style x:Key="CodeLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource TextColorPrimary}" />
+                <Setter Property="FontFamily" Value="Monospace" />
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="{DynamicResource TextColorPrimary}" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource PanelColor}" />
+                <Setter Property="PlaceholderColor" Value="{DynamicResource TextColorWeak}" />
+            </Style>
+
+            <Style x:Key="PrimaryButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource OnAccentColor}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="HeightRequest" Value="44" />
+            </Style>
+
+            <Style x:Key="GhostButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource PanelColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource TextColorPrimary}" />
+                <Setter Property="CornerRadius" Value="8" />
+            </Style>
+
+            <Style x:Key="Card" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="{DynamicResource PanelColor}" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+                <Setter Property="Padding" Value="14,12" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
